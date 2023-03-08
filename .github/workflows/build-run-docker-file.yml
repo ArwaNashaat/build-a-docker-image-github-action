@@ -10,5 +10,4 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build Image
         run: |
-          cd /home/runner/work/build-a-docker-image-github-action/build-a-docker-image-github-action
           docker build -t dummay-app:1.0 -f ./DockerFile .
