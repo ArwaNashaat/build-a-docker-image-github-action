@@ -1,0 +1,8 @@
+version: '3'
+services:
+  postgres14:
+    image: postgres
+    ports:
+      - "5430:5430"
+    environment:
+      - POSTGRES_PASSWORD=pgpassword
