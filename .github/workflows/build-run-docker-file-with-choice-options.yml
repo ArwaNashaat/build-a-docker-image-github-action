@@ -22,15 +22,14 @@ jobs:
           prop_path: "Testing.IMAGE_TAG"
       - run: echo ${{steps.repository_type.outputs.value}}
 
-#      - name: Create Environemnt JSON
-#        env:
-#          TARGET_ENVIRONMENT: >
-#            ${{ fromJson('{
-#              "Testing": "testing",
-#              "Staging": "stating"
-#            }')[github.event.inputs.name] }}
-#        run: |
-#          echo .env.$TARGET_ENVIRONMENT
+      - name: Create Environemnt JSON
+        env:
+          TARGET_ENVIRONMENT: >
+            ${{ fromJson( 
+              ${{steps.repository_type.outputs.value}} 
+            )[github.event.inputs.name] }}
+        run: |
+          echo .env.$TARGET_ENVIRONMENT
 #
 #      - name: Build & Push Docker Image
 #        uses: mr-smithers-excellent/docker-build-push@v6
