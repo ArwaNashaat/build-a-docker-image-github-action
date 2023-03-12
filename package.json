@@ -1,0 +1,8 @@
+{
+  "Testing": {
+    "IMAGE_TAG": "testing-image"
+  },
+  "Staging": {
+    "IMAGE_TAG": "staging-image"
+  }
+}

@@ -14,27 +14,31 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Map Image tag and Repository variables
-        uses: kanga333/variable-mapper@master
+      - name: get specified property
+        id: repository_type
+        uses: zoexx/github-action-json-file-properties@release
         with:
-          key: "${{ github.event.inputs.name }}"
-          map: |
-            {
-              "Testing": {
-                "IMAGE_TAG": "testing-image"
-              },
-              "Staging": {
-                "IMAGE_TAG": "staging-image"
-              }
-            }
+          path: 'package.json'
+          prop_path: "Testing.IMAGE_TAG"
+        run: echo ${{steps.repository_type.outputs.value}}
 
-      - name: Build & Push Docker Image
-        uses: mr-smithers-excellent/docker-build-push@v6
-        env:
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
-        with:
-          image: arwanashaat/$IMAGE_TAG
-          tags: v1, latest
-          registry: docker.io
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+#      - name: Create Environemnt JSON
+#        env:
+#          TARGET_ENVIRONMENT: >
+#            ${{ fromJson('{
+#              "Testing": "testing",
+#              "Staging": "stating"
+#            }')[github.event.inputs.name] }}
+#        run: |
+#          echo .env.$TARGET_ENVIRONMENT
+#
+#      - name: Build & Push Docker Image
+#        uses: mr-smithers-excellent/docker-build-push@v6
+#        env:
+#          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+#        with:
+#          image: arwanashaat/$IMAGE_TAG
+#          tags: v1, latest
+#          registry: docker.io
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_PASSWORD }}
