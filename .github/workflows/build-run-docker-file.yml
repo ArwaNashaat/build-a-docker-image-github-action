@@ -13,5 +13,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Map Image tag and Repository variables
+        uses: kanga333/variable-mapper@master
+        with:
+          key: "${{ github.event.inputs.name }}"
+          map: |
+            {
+              "Testing": {
+                "IMAGE_TAG": "testing-image"
+              },
+              "Staging": {
+                "IMAGE_TAG": "staging-image"
+              }
+            }
+
       - name: Build Image
-        run: echo "${{ github.event.inputs.name }}"
+        env:
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+        run: |
+          docker build -t $IMAGE_TAG:1.0 .
