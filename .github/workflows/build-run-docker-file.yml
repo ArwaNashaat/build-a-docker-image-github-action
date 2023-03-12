@@ -28,8 +28,13 @@ jobs:
               }
             }
 
-      - name: Build Image
+      - name: Build & Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
         env:
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
-        run: |
-          docker build -t $IMAGE_TAG:1.0 .
+        with:
+          image: arwanashaat/$IMAGE_TAG
+          tags: v1, latest
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
