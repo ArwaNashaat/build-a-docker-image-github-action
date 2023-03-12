@@ -19,25 +19,16 @@ jobs:
         uses: zoexx/github-action-json-file-properties@release
         with:
           file_path: 'package.json'
-          prop_path: "Testing.IMAGE_TAG"
+          prop_path: "${{ github.event.inputs.name }}.IMAGE_TAG"
       - run: echo ${{steps.repository_type.outputs.value}}
 
-      - name: Create Environemnt JSON
+      - name: Build & Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
         env:
-          TARGET_ENVIRONMENT: >
-            ${{ fromJson( 
-              ${{steps.repository_type.outputs.value}} 
-            )[github.event.inputs.name] }}
-        run: |
-          echo .env.$TARGET_ENVIRONMENT
-#
-#      - name: Build & Push Docker Image
-#        uses: mr-smithers-excellent/docker-build-push@v6
-#        env:
-#          IMAGE_TAG: ${{ env.IMAGE_TAG }}
-#        with:
-#          image: arwanashaat/$IMAGE_TAG
-#          tags: v1, latest
-#          registry: docker.io
-#          username: ${{ secrets.DOCKERHUB_USERNAME }}
-#          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          IMAGE_TAG: ${{steps.repository_type.outputs.value}}
+        with:
+          image: arwanashaat/$IMAGE_TAG
+          tags: v1, latest
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
