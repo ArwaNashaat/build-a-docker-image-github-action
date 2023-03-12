@@ -1,26 +1,17 @@
 name: Build Docker File
 on:
-  push:
-    branches: [ master ]
   workflow_dispatch:
     inputs:
-      log_Level:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-    env:
-    INPUT_LOG_LEVEL: ${{ github.event.inputs.log_Level }}
-
+      name:
+        type: choice
+        description: Choose Environment
+        options:
+          - Testing
+          - Staging
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Build Image
-        run: |
-          docker build -t dummay-app:1.0 .
-  job1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print input
-        run: echo "The log level is $INPUT_LOG_LEVEL"
+        run: echo "${{ github.event.inputs.name }}"
