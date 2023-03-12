@@ -2,12 +2,6 @@ name: Build Docker File
 on:
   workflow_dispatch:
     inputs:
-      name:
-        type: choice
-        description: Choose Environment
-        options:
-          - Testing
-          - Staging
       environment:
         type: environment
 jobs:
@@ -19,7 +13,7 @@ jobs:
       - name: Map Image tag and Repository variables
         uses: kanga333/variable-mapper@master
         with:
-          key: "${{ github.event.inputs.name }}"
+          key: "${{ github.event.inputs.environment }}"
           map: |
             {
               "Testing": {
