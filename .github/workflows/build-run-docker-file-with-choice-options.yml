@@ -18,7 +18,7 @@ jobs:
         id: repository_type
         uses: zoexx/github-action-json-file-properties@release
         with:
-          file_path: 'package.json'
+          file_path: 'environments-name.json'
           prop_path: "${{ github.event.inputs.name }}.IMAGE_TAG"
       - run: echo ${{steps.repository_type.outputs.value}}
 
