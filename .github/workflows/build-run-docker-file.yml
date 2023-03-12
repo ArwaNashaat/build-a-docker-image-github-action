@@ -7,30 +7,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: "${{ github.event.inputs.environment }}"
     steps:
       - uses: actions/checkout@v3
-
-      - name: Map Image tag and Repository variables
-        uses: kanga333/variable-mapper@master
-        with:
-          key: "${{ github.event.inputs.environment }}"
-          map: |
-            {
-              "Testing": {
-                "IMAGE_TAG": "testing-image"
-              },
-              "Staging": {
-                "IMAGE_TAG": "staging-image"
-              }
-            }
 
       - name: Build & Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v6
         env:
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          IMAGE_TAG: ${{ vars.IMAGE_TAG }}
         with:
           image: arwanashaat/$IMAGE_TAG
-          tags: v2, latest
+          tags: v3, latest
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
