@@ -18,9 +18,9 @@ jobs:
         id: repository_type
         uses: zoexx/github-action-json-file-properties@release
         with:
-          path: 'package.json'
+          file_path: 'package.json'
           prop_path: "Testing.IMAGE_TAG"
-        run: echo ${{steps.repository_type.outputs.value}}
+      - run: echo ${{steps.repository_type.outputs.value}}
 
 #      - name: Create Environemnt JSON
 #        env:
