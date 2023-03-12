@@ -1,4 +1,4 @@
-name: Build Docker File
+name: Build Image - Environment
 on:
   workflow_dispatch:
     inputs:
