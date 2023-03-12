@@ -28,7 +28,7 @@ jobs:
           IMAGE_TAG: ${{steps.repository_type.outputs.value}}
         with:
           image: arwanashaat/$IMAGE_TAG
-          tags: v1, latest
+          tags: v5, latest
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
