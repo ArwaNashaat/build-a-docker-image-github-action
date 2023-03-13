@@ -23,9 +23,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run With Migration
-        if: ${{ github.event.inputs.migration-type }} == 'With Migration'
+        if: github.event.inputs.migration-type == 'With Migration'
         run: echo ${{ github.event.inputs.environment }} ${{ github.event.inputs.migration-type }}
 
       - name: Run Without Migration
-        if: ${{ github.event.inputs.migration-type }} == 'Without Migration'
+        if: github.event.inputs.migration-type == 'Without Migration'
         run: echo ${{ github.event.inputs.environment }} ${{ github.event.inputs.migration-type }}
