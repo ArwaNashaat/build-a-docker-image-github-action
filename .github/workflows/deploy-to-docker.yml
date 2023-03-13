@@ -25,8 +25,8 @@ jobs:
 
       - name: Run With Migration
         if: github.event.inputs.migration-type == 'With Migration'
-        run: echo ${{ github.event.inputs.environment }} ${{ github.event.inputs.migration-type }}
+        run: echo ${{ vars.IMAGE_TAG }}
 
       - name: Run Without Migration
         if: github.event.inputs.migration-type == 'Without Migration'
-        run: echo ${{ github.event.inputs.environment }} ${{ github.event.inputs.migration-type }}
+        run: echo ${{ vars.IMAGE_TAG }}
