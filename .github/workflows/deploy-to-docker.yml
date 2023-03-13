@@ -1,0 +1,31 @@
+name: Deploy to AWS
+run-name: Deploy ${{ github.event.inputs.environment }} Environment - ${{ github.event.inputs.migration-type }}
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        required: true
+      migration-type:
+        type: choice
+        required: true
+        description: Choose Migration Type
+        options:
+          - With Migration
+          - Without Migration
+
+jobs:
+  Deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run With Migration
+        if: ${{ github.event.inputs.migration-type }} == 'With Migration'
+        run: echo ${{ github.event.inputs.environment }} ${{ github.event.inputs.migration-type }}
+
+      - name: Run Without Migration
+        if: ${{ github.event.inputs.migration-type }} == 'Without Migration'
+        run: echo ${{ github.event.inputs.environment }} ${{ github.event.inputs.migration-type }}
