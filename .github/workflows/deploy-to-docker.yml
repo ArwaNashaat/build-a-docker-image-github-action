@@ -11,7 +11,7 @@ on:
         required: true
         description: Choose Migration Type
         options:
-          - With Migration
+          - Ay 7aga
           - Without Migration
 
 jobs:
