@@ -1,15 +1,11 @@
 name: Build Image - Environment
+run-name: Deploy to ${{ github.event.inputs.environment }} Docker Hub
 on:
   workflow_dispatch:
     inputs:
       environment:
         type: environment
 jobs:
-  echo:
-    runs-on: ubuntu-latest
-    environment: "${{ github.event.inputs.environment }}"
-    run:
-      echo ${{ vars.IMAGE_TAG }}.json
   build:
     runs-on: ubuntu-latest
     environment: "${{ github.event.inputs.environment }}"
