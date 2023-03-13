@@ -5,6 +5,11 @@ on:
       environment:
         type: environment
 jobs:
+  echo:
+    runs-on: ubuntu-latest
+    environment: "${{ github.event.inputs.environment }}"
+    run:
+      echo ${{ vars.IMAGE_TAG }}.json
   build:
     runs-on: ubuntu-latest
     environment: "${{ github.event.inputs.environment }}"
