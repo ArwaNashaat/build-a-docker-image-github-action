@@ -12,6 +12,7 @@ on:
         description: Choose Migration Type
         options:
           - Ay 7aga
+          - With Migration
           - Without Migration
 
 jobs:
