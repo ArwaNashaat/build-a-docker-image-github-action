@@ -12,6 +12,7 @@ public class Launcher {
 
     LOGGER.warn("Running the main method");
     LOGGER.warn("develop branch");
+    LOGGER.warn("rename develop main");
     System.out.println("Hii");
   }
 }
