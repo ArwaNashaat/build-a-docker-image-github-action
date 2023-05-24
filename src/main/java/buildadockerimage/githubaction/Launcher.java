@@ -10,6 +10,7 @@ public class Launcher {
   public static void main(String[] args) {
     BasicConfigurator.configure();
 
+    LOGGER.warn("Running the main method on feature branch");
     LOGGER.warn("Running the main method");
     LOGGER.warn("develop branch");
     LOGGER.warn("rename develop main");
