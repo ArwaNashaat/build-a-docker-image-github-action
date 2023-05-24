@@ -11,6 +11,7 @@ public class Launcher {
     BasicConfigurator.configure();
 
     LOGGER.warn("Running the main method");
+    LOGGER.warn("develop branch");
     System.out.println("Hii");
   }
 }
