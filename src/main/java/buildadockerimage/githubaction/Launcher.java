@@ -10,7 +10,7 @@ public class Launcher {
   public static void main(String[] args) {
     BasicConfigurator.configure();
 
-    LOGGER.warn("Running the main method");
+    LOGGER.warn("HotFixx");
     System.out.println("Hii");
   }
 }
